@@ -1,0 +1,69 @@
+<div class="mt-3 row row-cols-2">
+  <div class="list-group col-4">
+    <i class="btn list-group-item font-weight-bold" (click)="sortList()">Categories:</i>
+    <div class="list-group-item">
+      <div class="input-group">
+        <input type="text" class="form-control form-control-sm ml-1" placeholder="Enter category name..."
+               [(ngModel)]="searchStr" autocomplete="off">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary btn-sm" title="Clear"
+                  (click)="searchStr = ''" style="color: grey">X
+          </button>
+        </div>
+      </div>
+    </div>
+    <div style="border: 1px solid lightgrey; height: 60vh; overflow:auto">
+      <div *ngFor="let category of categories | searchCategory:searchStr">
+        <button type="button" class="list-group-item list-group-item-action border-0"
+                (click)="selectCategory(category)" [class.active]="currentCategory == category">
+          <i>{{ category ? category.name : null }}</i>
+        </button>
+      </div>
+    </div>
+    <button type="button" class="list-group-item font-weight-bold btn" style="background: lightskyblue"
+            (click)="initEmptyForm()">
+      <i>Create new Category</i>
+    </button>
+  </div>
+
+  <div class="col-8" style="border: 1px solid lightgrey; border-radius: 5px" *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="currentCategory && currentCategory.categoryId ? update() : create()">
+      <div class="row form-group m-3">
+        <h3 style="font-style: italic" *ngIf="currentCategory && currentCategory.categoryId; else new">
+          {{ currentCategory.name }}: {{ currentCategory.categoryId }}</h3>
+        <ng-template #new>
+          <h3 style="font-style: italic">Create new category</h3>
+        </ng-template>
+      </div>
+
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label"><i>Name</i></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="name" id="name" autocomplete="off"
+                 [required]="form.get('name').hasError('required') && form.get('name').touched">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="reqName" class="col-sm-2 col-form-label"><i>Request ID</i></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="reqName" id="reqName" autocomplete="off"
+                 [required]="form.get('reqName').hasError('required') && form.get('reqName').touched">
+        </div>
+      </div>
+      <div class="row">
+        <div class="alert alert-danger offset-1 col-10 footer2" role="alert" *ngIf="alert">
+          {{ alert }}
+        </div>
+      </div>
+
+      <div class="row">
+        <button type="submit" class="btn btn-lg btn-primary col-2 footer"><i>Save</i></button>
+        <button type="button" class="btn btn-lg btn-danger offset-10 col-2 footer"
+                (click)="currentCategory && currentCategory.categoryId ? delete() : null"><i>Delete</i>
+        </button>
+      </div>
+    </form>
+
+  </div>
+
+</div>

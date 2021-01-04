@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link px-3" href="#" [routerLink]="['/banners']"
+                   [class.selected]="router.isActive('/banners', false)"><i>Banners</i></a>
+            </li>
+            <li class="nav-item active ml-3">
+                <a class="nav-link px-3" href="#" [routerLink]="['/categories']"
+                   [class.selected]="router.isActive('/categories', false)"><i>Categories</i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

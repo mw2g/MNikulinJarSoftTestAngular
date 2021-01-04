@@ -1,5 +1,7 @@
 # MNikulinJarSoftTestAngular
 
+This is Angular frontend part of Test Project, Spring Boot backend you can get from this link https://github.com/mw2g/MNikulinJarSoftTest
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
 
 ## Development server

@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+.form-control:invalid {
+  border: 1px solid red;
+}
+
+.custom-select:required {
+  border: 1px solid red;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.footer2 {
+  position: absolute;
+  bottom: 120px;
+}
